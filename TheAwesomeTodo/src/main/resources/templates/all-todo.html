@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Awesome To-Do's</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <h2>List of all Awesome To-Do's</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Delete</th>
+                <th>Mark as Completed</th>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Created At</th>
+                <th>Completed At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="toDo: ${toDosList}">
+                <td><a th:href="'/todo/delete/' + ${toDo.id}" th:text="X">Delete Here</a></td>
+                <td><a th:href="'/todo/mark-completed/' + ${toDo.id}" th:text="X">Mark As Completed Here</a></td>
+                <td th:text="${toDo.id}">ID Here</td>
+                <td th:text="${toDo.description}">Description Here</td>
+                <td th:text="${toDo.createdAt}">Create At Here</td>
+                <td th:text="${toDo.completedAt}">Completed At Here</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form method="post" action="/todo/new-todo">
+        <input type="text" name="description" placeholder="Start typing..." />
+        <input type="submit" value="Add" />
+    </form>
+</body>
+</html>
