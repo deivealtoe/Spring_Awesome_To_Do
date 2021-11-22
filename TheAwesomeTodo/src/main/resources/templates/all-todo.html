@@ -12,28 +12,14 @@
 <body>
     <h2>List of all Awesome To-Do's</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Delete</th>
-                <th>Mark as Completed</th>
-                <th>ID</th>
-                <th>Description</th>
-                <th>Created At</th>
-                <th>Completed At</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="toDo: ${toDosList}">
-                <td><a th:href="'/todo/delete/' + ${toDo.id}" th:text="X">Delete Here</a></td>
-                <td><a th:href="'/todo/mark-completed/' + ${toDo.id}" th:text="X">Mark As Completed Here</a></td>
-                <td th:text="${toDo.id}">ID Here</td>
-                <td th:text="${toDo.description}">Description Here</td>
-                <td th:text="${toDo.createdAt}">Create At Here</td>
-                <td th:text="${toDo.completedAt}">Completed At Here</td>
-            </tr>
-        </tbody>
-    </table>
+    <p th:each="toDo: ${toDosList}">
+        <a th:href="'/todo/delete/' + ${toDo.id}" th:text="Delete">Delete Here</a>
+        <a th:href="'/todo/mark-completed/' + ${toDo.id}" th:text="'Complete It'">Mark As Completed Here</a>
+        <!-- <span th:text="${toDo.id} + ' - '">ID Here</span> -->
+        <span th:text="${toDo.description} + ' - '">Description Here</span>
+        <span th:text="'Created At: ' + ${toDo.createdAt} + ' - '">Create At Here</span>
+        <span th:text="'Completed At: ' + ${toDo.completedAt}">Completed At Here</span>
+    </p>
 
     <form method="post" action="/todo/new-todo">
         <input type="text" name="description" placeholder="Start typing..." />
